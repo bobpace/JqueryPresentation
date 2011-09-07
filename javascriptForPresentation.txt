@@ -1,0 +1,22 @@
+myname = "global";
+function func() {
+  alert(myname);
+  var myname = "local";
+  alert(myname);
+}
+
+
+VARIABLE HOISTING!
+
+myname = "global";
+function func() {
+  var myname;
+  alert(myname);
+  myname = "local";
+  alert(myname);
+}
+
+
+
+
+Cache the value of your array.length when looping over HTMLCollections.
