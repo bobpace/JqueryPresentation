@@ -1,5 +1,6 @@
 var cornify = (function() {
   var cornify_count = 0,
+      cornyWords = ['Happy','Sparkly','Glittery','Fun','Magical','Lovely','Cute','Charming','Amazing','Wonderful'],
       cornify_url = 'http://www.cornify.com/'
       createElement = function(options) {
         var style = $.extend({}, options, {
@@ -48,7 +49,7 @@ var cornify = (function() {
             return newOptions;
           },
         '5': function(options) {
-          //TODO: add functionality to change headers
+          api.replaceHeaders();
           return options;
         }
       }
@@ -63,39 +64,32 @@ var cornify = (function() {
           element = createElement(options);
 
           cornify_count += 1;
-          $("body").append(element); }
+          $("body").append(element);
+        },
+        getCornyWord: function() {
+          var random = Math.random(),
+              randomRawValue = random * cornyWords.length,
+              randomIndex = Math.floor(randomRawValue);
+          return cornyWords[randomIndex];
+        },
+        replaceHeaders: function() {
+          var hc = 6,
+              hs, h, k;
+
+          while(hc >= 1) {
+              hs = document.getElementsByTagName('h' + hc);
+              for (k = 0; k < hs.length; k++) {
+                  h = hs[k];
+                  h.innerHTML = api.getCornyWord() + ' ' + h.innerHTML;
+              }
+              hc-=1;
+          }
+        },
+        loadCornamiCode: function() {
+        }
       };
 
       return api;
-}())
-
-cornify_replace = function() {
-    // Replace text.
-    var hc = 6,
-        hs, h, k;
-
-    while(hc >= 1) {
-        //TODO: change this to use JQuery
-        hs = document.getElementsByTagName('h' + hc);
-        for (k = 0; k < hs.length; k++) {
-            h = hs[k];
-            h.innerHTML = cornyWordGenerator.getWord() + ' ' + h.innerHTML;
-        }
-        hc-=1;
-    }
-}
-
-cornyWordGenerator = (function() {
-  var words = ['Happy','Sparkly','Glittery','Fun','Magical','Lovely','Cute','Charming','Amazing','Wonderful'],
-      length = words.length;
-  return {
-    getWord: function(){
-      var random = Math.random(),
-          randomRawValue = random * length,
-          randomIndex = Math.floor(randomRawValue);
-      return words[randomIndex];
-    }
-  };
 }())
 
 var cornami = {
