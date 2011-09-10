@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>testing cornify refactor</title>
+
+<meta name="description" content="jQueery: The gayest JavaScript library around" />
+
+<style type="text/css">
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#mainframe {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <h1>Welcome</h1>
+
+  <h2>This is a sub heading</h2>
+  <p></p>
+
+<div id="overlay"></div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.cornify.js"></script>
+<script type="text/javascript" src="cornify_refactored.js"></script>
+<script type="text/javascript">
+  $(function() {
+      $("#overlay").click(function() {
+        cornify.add();
+      });
+  });
+</script>
+
+</body>
+</html>

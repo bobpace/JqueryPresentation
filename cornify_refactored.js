@@ -74,19 +74,20 @@ var cornify = (function() {
         },
         replaceHeaders: function() {
           var hc = 6,
-              hs, h, k;
+              tagName;
 
           while(hc >= 1) {
-              hs = document.getElementsByTagName('h' + hc);
-              for (k = 0; k < hs.length; k++) {
-                  h = hs[k];
-                  h.innerHTML = api.getCornyWord() + ' ' + h.innerHTML;
-              }
+              tagName = 'h' + hc;
+              $(tagName).each(function() {
+                var element = $(this)
+                    cornyWord = api.getCornyWord(),
+                    innerHtml = element.html();
+
+                element.html(cornyWord + ' ' + innerHtml);
+              });
               hc-=1;
           }
         },
-        loadCornamiCode: function() {
-        }
       };
 
       return api;
