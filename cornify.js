@@ -1,5 +1,4 @@
 //global variable
-var cornify_count = 0;
 //global function
 cornify_add = function() {
     cornify_count += 1;
@@ -11,8 +10,8 @@ cornify_add = function() {
 
 
     //PURPOSE: Create div with img child that src is set to random cornify image
-    var cornify_url = 'http://www.cornify.com/';
-    var div = document.createElement('div');
+    var cornify_url = 'http://www.cornify.com/',
+        div = document.createElement('div');
     div.style.position = 'fixed';
 
     //PURPOSE: determine window height
@@ -120,30 +119,18 @@ cornify_add = function() {
     }
 }
 
-cornyWordGenerator = (function() {
-  var words = ['Happy','Sparkly','Glittery','Fun','Magical','Lovely','Cute','Charming','Amazing','Wonderful'],
-      length = words.length;
-  return {
-    getWord = function(){
-      var random = Math.random(),
-          randomRawValue = random * length,
-          randomIndex = Math.floor(randomRawValue);
-      return words[randomIndex];
-    }
-  };
-}())
-
 cornify_replace = function() {
     // Replace text.
-    var hc = 6,
-        hs, h, k;
-
+    var hc = 6;
+    var hs;
+    var h;
+    var k;
+    var words = ['Happy','Sparkly','Glittery','Fun','Magical','Lovely','Cute','Charming','Amazing','Wonderful'];
     while(hc >= 1) {
-        //TODO: change this to use JQuery
         hs = document.getElementsByTagName('h' + hc);
         for (k = 0; k < hs.length; k++) {
             h = hs[k];
-            h.innerHTML = cornyWordGenerator.getWord() + ' ' + h.innerHTML;
+            h.innerHTML = words[Math.floor(Math.random()*words.length)] + ' ' + h.innerHTML;
         }
         hc-=1;
     }

@@ -1,0 +1,76 @@
+Snippets from Jquery in Action
+------------------------------
+
+Separation of responsibilities!
+
+We separate the style from the structure using CSS.
+
+We separate the behavior from the structure with unobtrusive javascript.
+
+Obtrusive:
+
+<button type="button" onclick="document.getElementById('xyz').style.color='red';"> Click Me </button>
+
+Unobstrusive:
+
+<button type="button" id="testButton"> Click Me </button>
+
+<script type="text/javascript">
+  window.onload = function() {
+    document.getElementById('testButton').onclick = makeItRed;
+  };
+
+  function makeItRed() {
+    document.getElementById('xyz').style.color = 'red';
+  }
+</script>
+
+Consequences of choosing to write unobstrusive javascript:
+
+Unobstrusive javascript not only takes more effort or "code bulk" than the
+inline version, but also requires more discipline and use of good coding
+patterns.
+
+This is a good thing! Client side code needs to be written with the same level
+of care and respect usually allotted to server side code. 
+
+Since behavior is separated from structure, we need to perform these javascript
+operations on the page elements outside of the document markup that creates
+them. In order to achieve this, we need a way to wait until the DOM elements of
+the page are fully loaded first.
+
+Traditionally the onload handler for the window instance is used, but one
+downside of using this is you have to wait for all images and other external
+resources to finish loading before your javascript is and wired up.
+
+Jquery provides a way to execute your code after the DOM elements are loaded
+but before images and external resources are finished. The way to achieve this
+is different across different browsers, but Jquery takes care of that for you.
+
+$(function(){
+    //code here
+})
+
+Jquery makes this less of a chore.
+
+The creators of JQuery specifically created the library to make common tasks
+trivial.
+
+Using raw javascript to achieve these common tasks can result in dozens of
+lines of code.
+
+Example: Zebra striping a table with every other row colored differently
+
+  $("table tr:nth-child(even)").addClass("striped");
+
+Problems that Jquery helps solve:
+
+Ensuring code will work in a consistent manner across all major browsers.
+Waiting until the page is loaded before performing page operations.
+
+the jQuery() function can be used to do the following:
+
+Select and wrap DOM elements to operate upon
+Serve as a namespace for global utility functions
+Create DOM elements from HTML markup
+Establish code to be executed when the DOM is ready for manipulation
